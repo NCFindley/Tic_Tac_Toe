@@ -1,0 +1,37 @@
+#hor1 {
+	position: absolute;
+	width: 45%;
+	height: 50px;
+	top: 43%;
+	left:10%;
+}
+
+#hor2{
+	position: absolute;
+	width: 45%;
+	height: 50px;
+	top: 70%;
+	left: 10%;
+}
+
+#vert1 {
+	position: absolute;
+	width: 50px;
+	height: 65%;
+	left: 20%;
+	top: 25%
+}
+#vert2 {
+	position: absolute;
+	width: 50px;
+	height: 65%;
+	left: 40%;
+	top: 25%
+}
+
+#symbol {
+	width: 10%;
+	padding-left: 7%;
+	padding-top: 5%;
+
+}
