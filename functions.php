@@ -2,50 +2,48 @@
 
 function newGame(){
 	
-	$arr = array();
+	
 
-	$_SESSION["array"] = $arr;
-	$_SESSION["player"] = "x";
-	$_SESSION["turn"] = 0;
+	
 
 }
 
-function display($i){
 
-	$addarray = $_SESSION["array"];
+function display($i,$xopos,$whoturn){
 
-	$player = $_SESSION["player"];
 
-	if ($addarray[$i] == "x") {
 
-			echo '<img src = "images/x.png" id = "symbol">';
-		}elseif ($addarray[$i] == "y") {
-			echo '<img src = "images/o.png" id = "symbol">';
+	if ($xopos[$i]== "x") {
+
+			echo '<img src = "images/x.png" class = "symbol__x">';
+		}elseif ($xopos[$i] == "o") {
+			echo '<img src = "images/o.png" class = "symbol__o">';
 		}else{
-			#echo '<img src = "images/o.png" id = "symbol">';
-			$url =  '<a href = "index.php?symbol=' . strval($i) . '">Occupy</a>';
-			echo $url;
+			$link =  '<a href = "index.php?newxo=' . strval($i) . "&whoturn=" . $whoturn . "&xopos=" . $xopos . '" class = symbol__blank>#</a>';
+			echo $link;
 		}
 
 		
 }
 
-function addSymbol ($sympos){
+function addSymbol ($newxo,$xopos,$whoturn){
 
-	$addarray = $_SESSION["array"];
-	$player = $_SESSION["player"];
-
-	if ($player == "x") {
-		$addarray[$sympos] = "x";
-		$_SESSION["player"] = "y";
-	}elseif ($player == "y"){
-		$addarray[$sympos] = "y";
-		$_SESSION["player"] = "x";
-	}
 	
-	$_SESSION["array"] = $addarray;
+		$xopos[$newxo] = $whoturn;
+	
+		return $xopos;
 }
 
+function changeTurn ($whoturn){
+	
+	if ($whoturn == "o"){
+		$whoturn = "x";
+	}
+	elseif ($whoturn == "x") {
+		$whoturn = "o";
+	}
+	return $whoturn;
+}
 
 ?>
 

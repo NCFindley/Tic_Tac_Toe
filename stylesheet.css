@@ -1,37 +1,35 @@
-#hor1 {
-	position: absolute;
-	width: 45%;
-	height: 50px;
-	top: 43%;
-	left:10%;
+.row{
+	display:flex;
+	justify-content:left;
+
+}
+.cell{
+
+	border:1px solid black;
+	width: 100px;
+  	height: 100px;
 }
 
-#hor2{
-	position: absolute;
-	width: 45%;
-	height: 50px;
-	top: 70%;
-	left: 10%;
+.symbol__x{
+
+	width: 100px;
+	w
+
 }
 
-#vert1 {
-	position: absolute;
-	width: 50px;
-	height: 65%;
-	left: 20%;
-	top: 25%
-}
-#vert2 {
-	position: absolute;
-	width: 50px;
-	height: 65%;
-	left: 40%;
-	top: 25%
+.symbol__o{
+	
+	width: 90px;
+	
 }
 
-#symbol {
-	width: 10%;
-	padding-left: 7%;
-	padding-top: 5%;
+.symbol__blank{
+
+	width: 90px;
+	font-size: 600%;
+
+	color: white;
+	display: flex;
+	justify-content: center;
 
 }

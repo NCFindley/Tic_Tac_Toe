@@ -4,9 +4,19 @@
 <?php 
 
 
-include("functions.php"); 
+	include("functions.php"); 
 
+	$xopos = $_GET["xopos"];
+	$newxo = $_GET["newxo"];
+	$whoturn = $_GET["whoturn"];
 
+	if ($xopos == "") {
+			$xopos = "000000000";
+			$whoturn = "x";
+		}else{
+			$xopos = addSymbol($newxo,$xopos,$whoturn);
+			$whoturn = changeTurn($whoturn);
+		}
 ?>
 
 <head>
@@ -14,50 +24,29 @@ include("functions.php");
 </head>
 <body>
 	<h1>Time for Tic Tac Toe!</h1>
-	<h2>Player xxx Turn</h2>
-		<div>
-			<img src="images/hor.png" id = "hor1">
-			<img src="images/hor.png" id = "hor2">
-			<img src="images/vert.png" id = "vert1">
-			<img src="images/vert.png" id = "vert2">
-		</div>
-		<h1><?php
-					foreach ($_SESSION as $key=>$val){
-
-				echo $key. ": ".$val. "<br>";
-				
-				}
-				echo session_status(); 
-				$arrtest = $_SESSION["Array"];
-				echo $arrtest[0];
-				?></h1>
+	<h2>Player <?php echo $whoturn; ?> Turn</h2>
 
 		<dir>
 			<?php 
-				session_start();
 
-				if (session_status() == 1){
-					newGame();
-				}else {
-					$sympos = $_GET["symbol"];
-					addSymbol($sympos);
-				}
-
-				$_SESSION["turn"] += 1;
-				
-				
+				# Display X or O on board
 				$i = 0;
 
 				while ($i < 9) {
 
 					$x = 0; ?>
-
-					<div> 
+					<div class = "row"> 
 					 <?php
+
+				#Create each cell
+
 					while ($x < 3) { ?> 
-							<?php echo display($i); 
+						<div class = "cell">
+							<?php echo display($i,$xopos,$whoturn); 
 							$i +=1;
-							$x +=1; 			
+							$x +=1; ?>
+						</div> <?php
+
 					}
 				?> </div>
 				<?php 
@@ -66,14 +55,5 @@ include("functions.php");
 
 				
 		</dir>	
-		<h3><?php
-					foreach ($_SESSION as $key=>$val){
-
-				echo $key. ": ".$val. "<br>";
-				
-				}
-				echo "Session Status " . session_status(); 
-				echo " Symbol Status " . $sympos;
-				?></h3>
 </body>
 </html>
