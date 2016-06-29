@@ -21,32 +21,59 @@ include("functions.php");
 			<img src="images/vert.png" id = "vert1">
 			<img src="images/vert.png" id = "vert2">
 		</div>
-		
+		<h1><?php
+					foreach ($_SESSION as $key=>$val){
+
+				echo $key. ": ".$val. "<br>";
+				
+				}
+				echo session_status(); 
+				$arrtest = $_SESSION["Array"];
+				echo $arrtest[0];
+				?></h1>
+
 		<dir>
 			<?php 
-				#$newsymbol = $_GET["symbol"];
-				#addSymbol($newsymbol);
-				newGame();
+				session_start();
+
+				if (session_status() == 1){
+					newGame();
+				}else {
+					$sympos = $_GET["symbol"];
+					addSymbol($sympos);
+				}
+
+				$_SESSION["turn"] += 1;
+				
+				
 				$i = 0;
 
 				while ($i < 9) {
 
 					$x = 0; ?>
 
-					<div> <?php
+					<div> 
+					 <?php
 					while ($x < 3) { ?> 
 							<?php echo display($i); 
 							$i +=1;
-							$x +=1; 
-						
-						
+							$x +=1; 			
 					}
 				?> </div>
 				<?php 
 
 				} ?>
 
-
+				
 		</dir>	
+		<h3><?php
+					foreach ($_SESSION as $key=>$val){
+
+				echo $key. ": ".$val. "<br>";
+				
+				}
+				echo "Session Status " . session_status(); 
+				echo " Symbol Status " . $sympos;
+				?></h3>
 </body>
 </html>
