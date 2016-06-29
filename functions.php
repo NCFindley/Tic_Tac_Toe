@@ -1,43 +1,55 @@
 <?php 
 
-function checkhor($xopos,$numturn){
+function checkwinner($xopos,$numturn){
+
+	if ($numturn >= 6){
+
+		if (checkhor($xopos) != "no winner") {
+			return checkhor($xopos);
+			}elseif (checkver($xopos) != "no winner") {
+				return checkver($xopos);
+				}elseif (checkdiag($xopos) != "no winner") {
+					return checkdiag($xopos);
+				}
+	}
+	return "no winner";	
+}
+
+function checkhor($xopos){
 
 	$x = 0;
 	$y = 3;
 	
-	if ($numturn >=6){
+	while ( $x < 8) {
+	
+		if (substr($xopos,$x,$y) == "xxx") {
 
-		while ( $x < 8) {
-		
-			if (substr($xopos,$x,$y) == "xxx") {
+			return "Player X is the Winner";
 
-				return "Player X is the Winner";
+			}elseif (substr($xopos,$x,$y) == "ooo") {
 
-				}elseif (substr($xopos,$x,$y) == "ooo") {
-
-					return "Player O is the Winner";	
-				
-				}
-			$x += 3;
-		}
+				return "Player O is the Winner";	
+			
+			}
+		$x += 3;
 	}
-	return "no winner";
+
+return "no winner";
 }
 
 #This function checks for winner vertically. Variable n is used to loop through each column (3). The x variable is used to determine what index in string to add to $strwin. Variable i used only add three character to string. 
 
 
-function checkver($xopos, $numturn){
+function checkver($xopos){
 
-	$i = 0;
+	
 	$n = 0;
 	
-
-
 	while ($n < 3) {
 
 		$x = $n;
 		$strwin = "";
+		$i = 0;
 
 		while ( $i < 3) {
 
@@ -51,7 +63,6 @@ function checkver($xopos, $numturn){
 		}elseif ($strwin == "ooo") {
 			return "Player O is the Winner";
 		}
-
 		$n += 1;
 	}
 
@@ -82,17 +93,13 @@ function checkdiag($xopos){
 			}elseif ($strwin == "ooo") {
 				return "Player O is the Winner";
 			}
-
 			$y = 2;
 			$n +=1;
 			$x = 2;
 
 	}
 		
-
-	return "no winner " . $strwin;
-
-
+	return "no winner";
 }
 
 
