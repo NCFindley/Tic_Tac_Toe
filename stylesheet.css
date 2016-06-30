@@ -33,3 +33,12 @@
 	justify-content: center;
 
 }
+.results{
+	
+	border: 1px solid black;
+	width: 25%;
+}
+.results__list{
+	list-style-type: none;
+
+}

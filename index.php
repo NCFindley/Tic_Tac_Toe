@@ -10,17 +10,30 @@
 	$xopos = $_GET["xopos"];
 	$newxo = $_GET["newxo"];
 	$numturn = $_GET["numturn"];
+	$player1wins = $_GET["player1wins"];
+	$player2wins = $_GET["player2wins"];
+	$whoturn = $_GET["whoturn"];
+	$whoisx = $_GET["whoisx"];
+	$whoiso = $_GET["whoiso"];
 
+	#Determines if its game first round and initialize variables. Else change person turn and add x/o choice.
 	if ($xopos == "") {
 			$xopos = "000000000";
 			$numturn = 1;
+			$whoturn = "x";
+			$whoisx = changewhoisx($whoisx);
+			$whoiso = changewhoiso($whoiso);
 		}else{
-			
-			$whoturn = changeTurn($numturn);
 			$xopos = addSymbol($newxo,$xopos,$whoturn);
+			$whoturn = changeTurn($whoturn);
 			$numturn += 1;
 		}
-	$whoturn = changeTurn($numturn);
+
+
+	$winner = checkwinner($xopos,$numturn);
+	$winplayer = winplayer($whoturn,$whoisx,$whoiso);
+	$playerturn = playerturn($whoturn,$whoisx,$whoiso);
+	$display = headerdisplay($winner,$whoturn,$numturn,$winplayer, $playerturn);
 ?>
 
 <head>
@@ -28,19 +41,12 @@
 </head>
 <body>
 	<h1>Time for Tic Tac Toe!</h1>
-	<h2>Turn <?php echo $numturn . " " . $whoturn ?></h2>
+	<h2><?php echo $display ?></h2>
 
 		<dir>
-			<?php 
-
-				$winner = checkwinner($xopos,$numturn);
-
-				if ($winner != "no winner") {
-
-					?> 
-					<h1><?php echo $winner; ?></h1><?php
-				}
-
+				
+			
+			<?php
 				# Display X or O on board
 				$i = 0;
 
@@ -54,7 +60,7 @@
 
 					while ($x < 3) { ?> 
 						<div class = "cell">
-							<?php echo display($i,$xopos,$numturn); 
+							<?php echo display($i,$xopos,$numturn,$whoturn,$player1wins,$player2wins,$whoisx,$whoiso); 
 							$i +=1;
 							$x +=1; ?>
 						</div> <?php
@@ -67,5 +73,14 @@
 
 				
 		</dir>	
+		<div>
+			<ol class = "results__list">
+				<p> Player 1 Wins: <?php echo $player1;  ?></p>
+				<p> Player 2 Wins: <?php echo $player2;  ?></p>
+				<li> <a href="index.php"> New Game</a></li>
+				<li> <a href="index.php"> Reset</a></li>
+			</ol>
+			
+		</div>
 </body>
 </html>
