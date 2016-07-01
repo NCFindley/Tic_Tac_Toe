@@ -20,11 +20,11 @@ function checkwinner($xopos,$numturn){
 }
 
 #This will give string to output to header one. It'll display either the number of turns and who turn it is or the winner. 
-function headerdisplay($winner,$whoturn,$numturn, $winplayer, $prevturn){
+function headerdisplay($winner,$whoturn,$numturn, $winplayer, $prevturn,$prevplayer){
 
 
 	if ($winner == "no winner") {
-		return "It is Turn Number " . $numturn . " and turn as letter " . ucfirst($whoturn);
+		return "It is Turn Number " . $numturn . " and " .$prevplayer . " turn as letter " . ucfirst($whoturn);
 
 	}elseif ($winner != "Tie Game") {
 

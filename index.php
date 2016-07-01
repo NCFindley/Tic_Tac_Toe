@@ -28,7 +28,7 @@
 			$whoturn = "x";
 			$whoisx = changewhoisx($whoisx);
 			$whoiso = changewhoiso($whoiso);
-			$prevturn = $whoturn;
+			$prevturn = "o";
 		}else{
 			$xopos = addSymbol($newxo,$xopos,$whoturn);
 			$whoturn = changeTurn($whoturn);
@@ -49,7 +49,8 @@
 
 	$winner = checkwinner($xopos,$numturn);
 	$winplayer = winplayer($whoturn,$whoisx,$whoiso);
-	$display = headerdisplay($winner,$whoturn,$numturn,$winplayer, $prevturn);
+	$prevplayer = winplayer($prevturn,$whoisx,$whoiso);
+	$display = headerdisplay($winner,$whoturn,$numturn,$winplayer, $prevturn,$prevplayer);
 ?>
 
 <head>
