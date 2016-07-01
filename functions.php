@@ -20,11 +20,11 @@ function checkwinner($xopos,$numturn){
 }
 
 #This will give string to output to header one. It'll display either the number of turns and who turn it is or the winner. 
-function headerdisplay($winner,$whoturn,$numturn, $winplayer, $playerturn){
+function headerdisplay($winner,$whoturn,$numturn, $winplayer, $prevturn){
 
 
 	if ($winner == "no winner") {
-		return "It is Turn Number " . $numturn . " and " . $playerturn . " turn as letter " . $whoturn;
+		return "It is Turn Number " . $numturn . " and turn as letter " . ucfirst($whoturn);
 
 	}elseif ($winner != "Tie Game") {
 
@@ -46,19 +46,7 @@ function winplayer($whoturn,$whoisx,$whoiso){
 
 }
 
-function playerturn($whoturn,$whoisx,$whoiso){
-
-	if ($whoturn == "x") {
-		$playerturn = $whoisx;
-	}elseif ($whoturn == "o") {
-		$playerturn = $whoiso;
-	}
-
-	return $playerturn;
-
-
-}
-#This will declare Player one as x for first game. 
+#This will declare Player one as x and rotate who x is for each game.
 function changewhoisx ($whoisx){
 
 	if ($whoisx == "" || $whoisx == "Player 2") {
@@ -67,6 +55,8 @@ function changewhoisx ($whoisx){
 			return "Player 2";
 		}
 }
+
+#This will declare Player two as o and rotate who o is for each game.
 
 function changewhoiso ($whoiso) {
 
@@ -135,6 +125,7 @@ function checkver($xopos){
 
 }
 
+#check for winner diagonally. 
 function checkdiag($xopos){
 
 	$x = 0;
@@ -166,21 +157,30 @@ function checkdiag($xopos){
 }
 
 #This function display X, O images or link with all variables to be passed to next page. 
-function display($i,$xopos,$numturn,$whoturn,$player1wins,$player2wins,$whoisx,$whoiso){
+function display($i,$xopos,$winner,$query){
 
-	if ($xopos[$i]== "x") {
 
-			echo '<img src = "images/x.png" class = "symbol__x">';
-		}elseif ($xopos[$i] == "o") {
-			echo '<img src = "images/o.png" class = "symbol__o">';
-		}else{
-			$link =  '<a href = "index.php?newxo=' . strval($i) . "&xopos=" . $xopos . "&numturn=" . $numturn . "&whoturn=" . $whoturn . "&player1wins=" . $player1wins . "&player2wins=" . $player2wins . "&whoisx=" . $whoisx . "&whoiso=" . $whoiso .'" class = symbol__blank>#</a>';
-			echo $link;
-		}
+		if ($xopos[$i]== "x") {
 
-		
+				echo '<img src = "images/x.png" class = "symbol__x">';
+			}elseif ($xopos[$i] == "o") {
+				echo '<img src = "images/o.png" class = "symbol__o">';
+			}elseif ($winner == "no winner"){
+				echo $query;
+			}	
 }
 
+#Query containing variables for next page. 
+function query($i,$xopos,$numturn,$whoturn,$player1wins,$player2wins,$whoisx,$whoiso,$tiewins,$comp,$compturn){
+
+	return '<a href = "index.php?newxo=' . $i . "&xopos=" . $xopos . "&numturn=" . $numturn . "&whoturn=" . $whoturn . "&player1wins=" . $player1wins . "&player2wins=" . $player2wins . "&whoisx=" . $whoisx . "&whoiso=" . $whoiso . "&tiewins=" . $tiewins . "&comp=" . $comp . "&compturn=" . $compturn . '"class = symbol__blank>#</a>';
+}
+
+
+
+
+
+#Replace string position with either x or o depending on $whoturn.
 function addSymbol ($newxo,$xopos,$whoturn){
 
 		$xopos[$newxo] = $whoturn;
@@ -188,6 +188,7 @@ function addSymbol ($newxo,$xopos,$whoturn){
 		return $xopos;
 }
 
+#Change from x to o each turn. 
 function changeTurn ($whoturn){
 	
 	if ($whoturn == "x"){
@@ -197,6 +198,50 @@ function changeTurn ($whoturn){
 		return "x";
 	}
 }
+
+#Pass variable to new Game. This include Plalyer win count and ties.
+function toNewGame($player1wins, $player2wins, $tiewins){
+
+	echo '"index.php?player1wins=' . $player1wins . "&player2wins=" . $player2wins . "&tiewins=" . $tiewins .'"';
+}
+
+
+#Add Computer choice to the Array
+function compAdd($xopos,$whoturn){
+
+
+	if ($xopos[4] == "0"){
+
+		return addSymbol (4,$xopos,$whoturn);
+	}elseif ($xops[6] == "0") {
+		return addSymbol (6,$xopos,$whoturn);
+	}elseif ($xops[2] == "0") {
+		return addSymbol (0,$xopos,$whoturn);
+	}elseif ($xops[0] == "0") {
+		return addSymbol (6,$xopos,$whoturn);
+	}elseif ($xops[8] == "0") {
+		return addSymbol (8,$xopos,$whoturn);
+	}else{
+		return compRandom($xopos,$whoturn);
+	}
+
+}
+
+function compRandom($xopos, $whoturn){
+
+	$choice = "no";
+
+	while ($choice == "no") {
+
+		$rand = rand(0,8);
+		if ($xopos[$rand] == "0") {
+			return addSymbol($rand,$xopos,$whoturn);
+			$choice = "yes";
+		}
+	}
+}
+
+
 
 ?>
 
