@@ -3,21 +3,52 @@
 <link type="text/css" rel="stylesheet" href="stylesheet.css">
 <?php 
 
+	$myFile = "history.txt";
+	$fh = fopen($myFile, 'r') or die("Can't open file");
 
 	include("functions.php"); 
+#Array Order from file
+# $xopos, $newxo, $numturn, $player1wins, $player2wins, $whoturn, $whoisx, $whoiso, $tiewins, $comp, $compturn
 
-	#Get variables from previous turn
-	$xopos = $_GET["xopos"];
+
+	$lines = file($myFile, FILE_IGNORE_NEW_LINES);
+
+	$xopos = $lines[0];
+	$numturn = $lines[1];
+	$player1wins = $lines[2];
+	$player2wins = $lines[3];
+	$whoturn = $lines[4];
+	$whoisx= $lines[5];
+	$whoiso = $lines[6];
+	$tiewins = $lines[7];
+	$comp = $lines[8];
+	$compturn = $lines[9];
+
+	
+
+
+
+	fclose($fh);
+
 	$newxo = $_GET["newxo"];
+
+/*
+	#Get variables from previous turn
+	$xopos = $_GET["xopos"]; #Length of 9 of 0 and replacing with x or o if cell is selected. 
+	$newxo = $_GET["newxo"]; #Index position to replace with  or o in xopos
 	$numturn = $_GET["numturn"];
 	$player1wins = $_GET["player1wins"];
 	$player2wins = $_GET["player2wins"];
+
 	$whoturn = $_GET["whoturn"];
 	$whoisx = $_GET["whoisx"];
 	$whoiso = $_GET["whoiso"];
+
 	$tiewins = $_GET["tiewins"];
 	$comp = $_GET["comp"];
 	$compturn = $_GET["compturn"];
+
+	*/
 
 	$prevturn = $whoturn;
 
@@ -58,7 +89,7 @@
 </head>
 <body>
 	<h1>Time for Tic Tac Toe!</h1>
-	<h2><?php echo $display; ?></h2>
+	<h2><?php echo $display . " Test" . $newxo; ?></h2>
 		<dir>
 				
 			
@@ -96,7 +127,7 @@
 
 			<?php
 
-				#Increment count for winner
+				#Increase count for winner
 			
 				if ($winner != "no winner") {
 					if ($winner == "Tie Game") {
@@ -107,6 +138,24 @@
 						$player2wins = intval($player2wins) + 1;
 					}
 				}
+
+
+			$fh = fopen($myFile, 'w') or die("Can't open file");
+
+				fwrite($fh, $xopos . "\n");
+				fwrite($fh, $numturn . "\n");
+				fwrite($fh, $player1wins . "\n");
+				fwrite($fh, $player2wins . "\n");
+				fwrite($fh, $whoturn . "\n");
+				fwrite($fh, $whoisx . "\n");
+				fwrite($fh, $whoiso . "\n");
+				fwrite($fh, $tiewins . "\n");
+				fwrite($fh, $comp . "\n");
+				fwrite($fh, $compturn . "\n");
+
+
+			
+				fclose($fh);
 
 			?>
 			<ol class = "results__list">

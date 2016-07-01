@@ -177,6 +177,14 @@ function query($i,$xopos,$numturn,$whoturn,$player1wins,$player2wins,$whoisx,$wh
 }
 
 
+function saveVar($xopos, $newxo, $numturn, $player1wins, $player2wins, $whoturn, $whoisx, $whoiso, $tiewins, $comp, $compturn){
+
+	$saveVar = $xopos . $newxo . $numturn . $player1wins . $player2wins . $whoturn . $whoisx . $whoiso . $tiewins . $comp . $compturn;
+
+	return $saveVar;
+}
+
+
 
 
 
