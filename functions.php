@@ -249,7 +249,19 @@ function compRandom($xopos, $whoturn){
 	}
 }
 
+function findWinner($winner, $player){
 
+	if ($winner != "no winner") {
+		if ($winner == "Tie Game") {
+			return intval($player) + 1;
+		}elseif ($winplayer == "Player 1") {	
+			return intval($player) + 1;
+		}elseif ($winplayer == "Player 2") {
+			return intval($player) + 1;
+		}
+	}
+		return $player;
+}
 
 ?>
 

@@ -82,6 +82,13 @@
 	$winplayer = winplayer($whoturn,$whoisx,$whoiso);
 	$prevplayer = winplayer($prevturn,$whoisx,$whoiso);
 	$display = headerdisplay($winner,$whoturn,$numturn,$winplayer, $prevturn,$prevplayer);
+
+	#Increase count for winner
+				
+
+	$tiewins = findWinner($winner,$tiewins);
+	$player1wins = findWinner($winner,$player1wins);
+	$player2wins = findWinner($winner,$player2wins);
 ?>
 
 <head>
@@ -126,18 +133,6 @@
 		<div>
 
 			<?php
-
-				#Increase count for winner
-			
-				if ($winner != "no winner") {
-					if ($winner == "Tie Game") {
-						$tiewins = intval($tiewins) + 1;
-					}elseif ($winplayer == "Player 1") {	
-						$player1wins = intval($player1wins) + 1;
-					}elseif ($winplayer == "Player 2") {
-						$player2wins = intval($player2wins) + 1;
-					}
-				}
 
 
 			$fh = fopen($myFile, 'w') or die("Can't open file");
