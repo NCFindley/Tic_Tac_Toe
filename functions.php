@@ -210,7 +210,7 @@ function changeTurn ($whoturn){
 #Pass variable to new Game. This include Plalyer win count and ties.
 function toNewGame($player1wins, $player2wins, $tiewins){
 
-	echo '"index.php?player1wins=' . $player1wins . "&player2wins=" . $player2wins . "&tiewins=" . $tiewins .'"';
+	echo '"index.php?player1wins=' . $player1wins . "&player2wins=" . $player2wins . "&tiewins=" . $tiewins . "&newGame=yes" . '"';
 }
 
 
@@ -249,18 +249,40 @@ function compRandom($xopos, $whoturn){
 	}
 }
 
-function findWinner($winner, $player){
+
+function winTie($winner, $winplayer,$player){
 
 	if ($winner != "no winner") {
-		if ($winner == "Tie Game") {
-			return intval($player) + 1;
-		}elseif ($winplayer == "Player 1") {	
-			return intval($player) + 1;
-		}elseif ($winplayer == "Player 2") {
-			return intval($player) + 1;
+		if ($winplayer == "Tie Game") {
+			$player =  intval($player) + 1;
 		}
+		
 	}
 		return $player;
+}
+
+function winPlayer1($winner, $winplayer,$player){
+
+	if ($winner != "no winner") {
+		if ($winplayer == "Player 1") {
+			$player =  intval($player) + 1;
+		}
+		
+	}
+		return $player;
+
+}
+
+function winplayer2($winner, $winplayer,$player){
+
+	if ($winner != "no winner") {
+		if ($winplayer == "Player 2") {
+			$player =  intval($player) + 1;
+		}
+		
+	}
+		return $player;
+
 }
 
 ?>

@@ -1,10 +1,60 @@
-xx00x0oox
-24
+xxx0o00o0
 5
-
-o
+x
 Player 1
+x0oxo0xxo
+7
+x
+Player 1
+xo00o0xox
+6
+o
 Player 2
-1
-
-
+xxx0o00o0
+4
+x
+Player 1
+xxx0o00o0
+4
+x
+Player 1
+xxx0o00o0
+4
+x
+Player 1
+xxx0o00o0
+4
+x
+Player 1
+xxx0o00o0
+4
+x
+Player 1
+x0oxo0xxo
+6
+x
+Player 1
+xo00o0xox
+5
+o
+Player 2
+xxx0o00o0
+3
+x
+Player 1
+xxx0o00o0
+4
+x
+Player 1
+x0oxo0xxo
+6
+x
+Player 1
+xo00o0xox
+5
+o
+Player 2
+xxx0o00o0
+4
+x
+Player 1
